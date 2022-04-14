@@ -1,10 +1,11 @@
 ﻿from types import NoneType
 from selenium import webdriver
 from time import sleep
+import os
 
 class ChromeAuto:
     def __init__(self):
-        self.driver_path='chromedriver'
+        self.driver_path= 'chromedriver'
         self.options = webdriver.ChromeOptions()
         self.options.add_argument('--profile-directory=1')
         self.chrome = webdriver.Chrome(
@@ -12,8 +13,8 @@ class ChromeAuto:
             options=self.options
 
             )
-        self.usuario='digite o seu usuario do github'
-        self.senha='digite sua senha'
+        self.usuario=os.getenv('github_usu') #seu usuário do github
+        self.senha=os.getenv('github_se') #sua senha do github
     def clica_sign_in(self):
         try:
             btn_sign_up= self.chrome.find_elements_by_link_text('Sign up')[0].click()
